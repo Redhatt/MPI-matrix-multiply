@@ -1,0 +1,23 @@
+
+module load mpi/openmpi-x86 64
+export OPENBLAS NUM THREADS=1
+touch worker_a.txt
+touch worker_b.txt
+
+count=10
+for i in $(seq $count); do
+    mpirun -n 3 python code_a.py
+    mpirun -n 3 python code_b.py
+done
+
+for i in $(seq $count); do
+    mpirun -n 5 python code_a.py
+    mpirun -n 5 python code_b.py
+done
+
+for i in $(seq $count); do
+    mpirun -n 7 python code_a.py
+    mpirun -n 7 python code_b.py
+done
+
+python result.py
