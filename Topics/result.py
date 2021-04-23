@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
 file1 = 'worker_a.txt'
 file2 = 'worker_b.txt'
