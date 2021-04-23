@@ -15,8 +15,10 @@ def get_avg(file):
 			val = a.strip().split('-')
 			count[d[val[0]]] += 1
 			ans[d[val[0]]] += float(val[1])
+		
 		for i in range(3):
-			ans[i] /= count[i]
+			if count[i] != 0:
+				ans[i] /= count[i]
 	return ans
 
 val1 = get_avg(file1)
