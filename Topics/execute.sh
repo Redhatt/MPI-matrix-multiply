@@ -19,5 +19,3 @@ for i in $(seq $count); do
     mpirun -n 7 MPI-matrix-multiply/Topics/python code_a.py
     mpirun -n 7 MPI-matrix-multiply/Topics/python code_b.py
 done
-
-python MPI-matrix-multiply/Topics/result.py
