@@ -6,16 +6,25 @@ touch worker_b.txt
 
 count=10
 for i in $(seq $count); do
-    mpirun -n 3 python MPI-matrix-multiply/Topics/code_a.py
-    mpirun -n 3 python MPI-matrix-multiply/Topics/code_b.py
+    mpirun --allow-run-as-root -n 3 python MPI-matrix-multiply/Topics/code_a.py
 done
 
 for i in $(seq $count); do
-    mpirun -n 5 python MPI-matrix-multiply/Topics/code_a.py
-    mpirun -n 5 python MPI-matrix-multiply/Topics/code_b.py
+    mpirun --allow-run-as-root -n 5 python MPI-matrix-multiply/Topics/code_a.py
 done
 
 for i in $(seq $count); do
-    mpirun -n 7 python MPI-matrix-multiply/Topics/code_a.py
-    mpirun -n 7 python MPI-matrix-multiply/Topics/code_b.py
+    mpirun --allow-run-as-root -n 7 python MPI-matrix-multiply/Topics/code_a.py
+done
+
+for i in $(seq $count); do
+    mpirun --allow-run-as-root -n 3 python MPI-matrix-multiply/Topics/code_b.py
+done
+
+for i in $(seq $count); do
+    mpirun --allow-run-as-root -n 5 python MPI-matrix-multiply/Topics/code_b.py
+done
+
+for i in $(seq $count); do
+    mpirun --allow-run-as-root -n 7 python MPI-matrix-multiply/Topics/code_b.py
 done
