@@ -25,6 +25,7 @@ if rank == 0:
 	start = MPI.Wtime()
 
 	# broadcast it---------------
+	com.Bcast(x, root=0)
 	#----------------------------
 
 	# get them back--------------
@@ -51,4 +52,4 @@ for i in range(N):
 		# sending answer
 		com.Send(ans, dest=0)
 
-com.Bcast(x, root=0)
+
