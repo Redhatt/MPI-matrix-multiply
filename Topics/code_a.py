@@ -22,7 +22,7 @@ if rank == 0:
 	for i in range(N):
 		com.Send(A[i*(m//N): (i+1)*m//N, :], dest=(i+1), tag=i)
 
-	start = time()
+	start = MPI.Wtime()
 
 	# broadcast it---------------
 	#----------------------------
@@ -33,7 +33,7 @@ if rank == 0:
 		com.Recv(temp, source=MPI.ANY_SOURCE, tag=MPI.ANY_TAG, status=info)
 
 	#----------------------------
-	stop = time()
+	stop = MPI.Wtime()
 	total_time = (stop - start) * 1000
 	print(total_time)
 
