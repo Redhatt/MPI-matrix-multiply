@@ -43,14 +43,15 @@ if rank == 0:
 	with open (file, 'a') as fp:
 		fp.write("{}-{}".format(N, total_time))
 
-if rank != 0:
-	matrix = np.empty((m//N, n))
-	com.Recv(matrix, source=0, tag=i)
+for i in range(N):
+	if rank != 0:
+		matrix = np.empty((m//N, n))
+		com.Recv(matrix, source=0, tag=i)
 
-	# compute the answer
-	ans = np.dot(matrix, x)
+		# compute the answer
+		ans = np.dot(matrix, x)
 
-	# sending answer
-	com.Send(ans, dest=0)
+		# sending answer
+		com.Send(ans, dest=0)
 
 
