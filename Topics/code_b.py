@@ -14,8 +14,6 @@ file = 'worker_b.txt'
 
 x = np.zeros((n, 1))
 
-if rank == 0:
-	com.Bcast(x, root=0)
 
 if rank == 0:
 	info = MPI.Status()
@@ -28,6 +26,7 @@ if rank == 0:
 	start = MPI.Wtime()
 
 	# broadcast it---------------
+	com.Bcast(x, root=0)
 	#----------------------------
 
 	# get them back--------------
