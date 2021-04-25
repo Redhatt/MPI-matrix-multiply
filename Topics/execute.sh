@@ -1,5 +1,5 @@
 #!/bin/bash
-module load mpi/openmpi-x86 64
+module load mpi/openmpi-x86_64
 export OPENBLAS NUM THREADS=1
 touch worker_a.txt
 touch worker_b.txt
