@@ -4,7 +4,7 @@ export OPENBLAS NUM THREADS=1
 touch worker_a.txt
 touch worker_b.txt
 
-count=10
+count=20
 for i in $(seq $count); do
     mpirun -n 3 python MPI-matrix-multiply/Topics/code_a.py
     sleep(0.5)
