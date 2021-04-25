@@ -43,7 +43,7 @@ if rank == 0:
 		fp.write("{}-{}".format(N, total_time))
 
 for i in range(N):
-	if rank != 0:
+	if rank == i+1:
 		matrix = np.empty((m//N, n))
 		com.Recv(matrix, source=0, tag=i)
 
