@@ -15,6 +15,9 @@ file = 'worker_a.txt'
 x = np.zeros((n, 1))
 
 if rank == 0:
+	com.Bcast(x, root=0)
+
+if rank == 0:
 	info = MPI.Status()
 	temp = np.empty((m//N,1))
 	x = np.random.rand(n,1)
@@ -25,7 +28,6 @@ if rank == 0:
 	start = MPI.Wtime()
 
 	# broadcast it---------------
-	com.Bcast(x, root=0)
 	#----------------------------
 
 	# get them back--------------
@@ -41,14 +43,13 @@ if rank == 0:
 	with open (file, 'a') as fp:
 		fp.write("{}-{}".format(N, total_time))
 
-for i in range(N):
-	if rank == i+1:
-		matrix = np.empty((m//N, n))
-		com.Recv(matrix, source=0, tag=i)
+if rank != 0:
+	matrix = np.empty((m//N, n))
+	com.Recv(matrix, source=0, tag=i)
 
-		# compute the answer
-		ans = np.dot(matrix, x)
+	# compute the answer
+	ans = np.dot(matrix, x)
 
-		# sending answer
-		com.Send(ans, dest=0)
+	# sending answer
+	com.Send(ans, dest=0)
 
